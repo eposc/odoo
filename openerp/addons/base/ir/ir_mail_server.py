@@ -431,7 +431,8 @@ class ir_mail_server(osv.osv):
         email_to = message['To']
         email_cc = message['Cc']
         email_bcc = message['Bcc']
-        
+        del message['Bcc']
+
         smtp_to_list = filter(None, tools.flatten(map(extract_rfc2822_addresses,[email_to, email_cc, email_bcc])))
         assert smtp_to_list, self.NO_VALID_RECIPIENT
 
